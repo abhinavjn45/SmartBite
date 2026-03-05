@@ -36,7 +36,7 @@ def prepare_data(df):
     df['weather_encoded'] = le_weather.fit_transform(df['weather_condition'])
     
     features = ['canteen_encoded', 'day_of_week', 'hour', 'temperature', 
-                'weather_encoded', 'exam_week', 'event_day']
+                'weather_encoded', 'exam_week', 'event_day', 'holiday']
                 
     X = df[features]
     y_reg = df['crowd_count']

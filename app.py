@@ -102,7 +102,7 @@ elif choice == "Live Dashboard":
             features = pd.DataFrame([{
                 'canteen_encoded': c_enc, 'day_of_week': day_of_week, 'hour': hour,
                 'temperature': temp, 'weather_encoded': w_enc,
-                'exam_week': exam_week, 'event_day': event_day
+                'exam_week': exam_week, 'event_day': event_day, 'holiday': 0
             }])
             
             pred_count = int(regressor.predict(features)[0])
@@ -155,7 +155,7 @@ elif choice == "Map View":
         for canteen in CANTEENS:
             c_enc = encoders['canteen'].transform([canteen])[0]
             w_enc = encoders['weather'].transform(["Sunny"])[0]
-            features = pd.DataFrame([{'canteen_encoded': c_enc, 'day_of_week': now.weekday(), 'hour': now.hour, 'temperature': 28, 'weather_encoded': w_enc, 'exam_week': 0, 'event_day': 0}])
+            features = pd.DataFrame([{'canteen_encoded': c_enc, 'day_of_week': now.weekday(), 'hour': now.hour, 'temperature': 28, 'weather_encoded': w_enc, 'exam_week': 0, 'event_day': 0, 'holiday': 0}])
             live_preds[canteen] = {
                 "count": int(regressor.predict(features)[0]),
                 "level": classifier.predict(features)[0]
@@ -210,6 +210,7 @@ elif choice == "Predict Crowd":
             sel_weather = st.selectbox("Weather", WEATHER_CONDITIONS)
             sel_exam = st.checkbox("Exam Week")
             sel_event = st.checkbox("Campus Event")
+            sel_holiday = st.checkbox("Campus Holiday")
             
         if st.button("Predict 🚀"):
             c_enc = encoders['canteen'].transform([sel_canteen])[0]
@@ -218,7 +219,7 @@ elif choice == "Predict Crowd":
             features = pd.DataFrame([{
                 'canteen_encoded': c_enc, 'day_of_week': sel_day, 'hour': sel_hour,
                 'temperature': sel_temp, 'weather_encoded': w_enc,
-                'exam_week': int(sel_exam), 'event_day': int(sel_event)
+                'exam_week': int(sel_exam), 'event_day': int(sel_event), 'holiday': int(sel_holiday)
             }])
             
             pred_count = int(regressor.predict(features)[0])
