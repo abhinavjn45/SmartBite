@@ -50,10 +50,3 @@ SmartBite-AI/
    ```bash
    streamlit run app.py
    ```
-
-## Deployment on Streamlit Cloud
-
-1. Push this folder to a GitHub repository.
-2. Log in to [Streamlit Community Cloud](https://share.streamlit.io/).
-3. Create a new app, select your repository, branch, and entry point (`app.py`).
-4. Click **Deploy**. The platform will automatically install packages from `requirements.txt`.
