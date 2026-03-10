@@ -106,8 +106,8 @@ def generate_simulated_data(num_days=90):
     os.makedirs(os.path.join(os.path.dirname(__file__), '..', 'data'), exist_ok=True)
     file_path = os.path.join(os.path.dirname(__file__), '..', 'data', 'canteen_data.csv')
     df.to_csv(file_path, index=False)
-    print(f"✅ Generated {len(df)} records of simulated canteen data.")
-    print(f"📁 Data saved to {file_path}")
+    print(f"Generated {len(df)} records of simulated canteen data.")
+    print(f"Data saved to {file_path}")
     
     return df
 

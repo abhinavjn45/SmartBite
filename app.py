@@ -13,7 +13,7 @@ from utils.data_simulator import CANTEENS, WEATHER_CONDITIONS
 from utils.rule_engine import predict_crowd
 
 # --- Config & Setup ---
-st.set_page_config(page_title="SmartBite AI", page_icon="🍔", layout="wide")
+st.set_page_config(page_title="SmartBite AI", page_icon="", layout="wide")
 
 DATA_PATH = os.path.join(os.path.dirname(__file__), 'data', 'canteen_data.csv')
 INDIA_TZ = ZoneInfo("Asia/Kolkata")
@@ -115,13 +115,13 @@ elif choice == "Live Dashboard":
 
     sel_pred = next(p for p in live_predictions if p['canteen'] == selected_canteen)
     if sel_pred['level'] in ["High", "Critical surge"]:
-        st.warning(f"⚠️ {selected_canteen} is currently experiencing a {sel_pred['level']} crowd.")
+        st.warning(f"{selected_canteen} is currently experiencing a {sel_pred['level']} crowd.")
         alts = recommend_alternatives(selected_canteen, live_predictions)
         st.markdown("#### Recommended Alternatives:")
         for alt in alts[:2]:
-            st.success(f"🥘 **{alt['canteen']}** - {alt['level']} Crowd | Est. wait: {alt['wait_time']} mins | Distance score: {alt['distance_score']}")
+            st.success(f"**{alt['canteen']}** - {alt['level']} Crowd | Est. wait: {alt['wait_time']} mins | Distance score: {alt['distance_score']}")
     else:
-        st.success(f"✅ {selected_canteen} is a good choice right now ({sel_pred['level']} crowd)!")
+        st.success(f"{selected_canteen} is a good choice right now ({sel_pred['level']} crowd)!")
 
     time.sleep(30)
     st.rerun()
@@ -189,7 +189,7 @@ elif choice == "Predict Crowd":
         sel_event = st.checkbox("Campus Event")
         sel_holiday = st.checkbox("Campus Holiday")
 
-    if st.button("Predict 🚀"):
+    if st.button("Predict"):
         pred_count, pred_level = predict_crowd(
             canteen_name=sel_canteen,
             day_of_week=sel_day,
