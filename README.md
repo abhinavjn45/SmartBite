@@ -1,6 +1,6 @@
-# SmartBite AI – Intelligent Crowd Flow & Wait-Time Prediction System
+# SmartBite AI – Simple Crowd Flow & Wait-Time Estimation System
 
-SmartBite AI is a real-time smart dashboard application that predicts crowd density, wait time, and recommends alternative canteens inside CHRIST University campus.
+SmartBite AI is a real-time smart dashboard application that estimates crowd density, wait time, and recommends alternative canteens inside CHRIST University campus using simple rule-based logic.
 
 ## Folder Structure
 
@@ -9,16 +9,11 @@ SmartBite-AI/
 ├── app.py                     # Main Streamlit application
 ├── data/
 │   └── canteen_data.csv       # Simulated campus canteen data
-├── models/
-│   ├── ml_pipeline.py         # ML training script
-│   ├── rf_regressor.pkl       # Saved RandomForest Regressor
-│   ├── rf_classifier.pkl      # Saved RandomForest Classifier
-│   ├── encoders.pkl           # Saved Label Encoders
-│   └── metrics.pkl            # Model evaluation metrics
 ├── utils/
 │   ├── data_simulator.py      # Script to generate realistic data
 │   ├── wait_time.py           # Logic for estimating wait times
-│   └── recommendation.py      # Smart recommendation engine logic
+│   ├── recommendation.py      # Smart recommendation engine logic
+│   └── rule_engine.py         # Rule-based crowd estimation logic
 ├── requirements.txt           # Python dependencies
 └── README.md                  # Project documentation
 ```
@@ -27,7 +22,7 @@ SmartBite-AI/
 
 1. **Live Dashboard**: Auto-refreshing module simulating real-time crowding and wait times.
 2. **Map View**: Interactive Folium campus map showing active crowd levels.
-3. **Predict Crowd**: ML-driven prediction tool for customized scenarios.
+3. **Predict Crowd**: Rule-based prediction tool for customized scenarios.
 4. **Insights & Analytics**: Data visualizations for historical trends (hourly, weekly, weather patterns).
 5. **Smart Recommendation**: Suggests alternative canteens with lowest wait times and distances when your selected canteen is crowded.
 
@@ -42,11 +37,7 @@ SmartBite-AI/
    ```bash
    python utils/data_simulator.py
    ```
-4. **Train Models**:
-   ```bash
-   python models/ml_pipeline.py
-   ```
-5. **Run Streamlit App**:
+4. **Run Streamlit App**:
    ```bash
    streamlit run app.py
    ```
