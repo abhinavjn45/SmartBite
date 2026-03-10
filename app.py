@@ -6,6 +6,7 @@ from streamlit_folium import st_folium
 import os
 import time
 from datetime import datetime
+from zoneinfo import ZoneInfo
 from utils.wait_time import estimate_wait_time
 from utils.recommendation import recommend_alternatives, CANTEEN_LOCATIONS
 from utils.data_simulator import CANTEENS, WEATHER_CONDITIONS
@@ -15,6 +16,11 @@ from utils.rule_engine import predict_crowd
 st.set_page_config(page_title="SmartBite AI", page_icon="🍔", layout="wide")
 
 DATA_PATH = os.path.join(os.path.dirname(__file__), 'data', 'canteen_data.csv')
+INDIA_TZ = ZoneInfo("Asia/Kolkata")
+
+
+def india_now():
+    return datetime.now(INDIA_TZ)
 
 @st.cache_data
 def load_data():
@@ -63,7 +69,7 @@ elif choice == "Live Dashboard":
     st.title("Live Campus Dashboard")
     st.markdown("Auto-refreshing predictions (Simulated real-time)")
 
-    now = datetime.now()
+    now = india_now()
     hour = now.hour
     minute = now.minute
     day_of_week = now.weekday()
@@ -123,7 +129,7 @@ elif choice == "Live Dashboard":
 elif choice == "Map View":
     st.title("Campus Canteen Map")
 
-    now = datetime.now()
+    now = india_now()
     weather = WEATHER_CONDITIONS[now.day % len(WEATHER_CONDITIONS)]
     temp = 26 + (now.day % 6)
 
